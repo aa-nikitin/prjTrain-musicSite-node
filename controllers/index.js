@@ -1,3 +1,4 @@
 module.exports = {
-  test: require('./test.js')
+  test: require('./test.js'),
+  newProduct: require('./newProduct.js')
 };

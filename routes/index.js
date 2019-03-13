@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
-const { test } = require('../controllers');
+const { test, newProduct } = require('../controllers');
 
 /* POST test. */
 router.post('/', test);
+router.post('/newProduct/', newProduct);
 
 module.exports = router;
