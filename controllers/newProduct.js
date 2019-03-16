@@ -1,4 +1,4 @@
-const Product = require('../models/products');
+const Product = require('../models/product');
 const formidable = require('formidable');
 const fs = require('fs');
 const path = require('path');
@@ -19,7 +19,7 @@ module.exports = (req, res, next) => {
         return res.json({
           maessage: 'Товар с таким наименованием существует'
         });
-      } else
+      } else {
         fs.rename(files.file.path, fileNameDir, err => {
           if (err) {
             return next(err);
@@ -34,6 +34,7 @@ module.exports = (req, res, next) => {
           newProduct.save();
           return res.status(200).json({ maessage: 'Товар успешно добавлен' });
         });
+      }
     });
   });
 };

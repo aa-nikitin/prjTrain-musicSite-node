@@ -1,15 +1,14 @@
 const mongoose = require('mongoose');
+const { DB_USER, DB_PASS, DB_NAME } = process.env;
+const connectAddress = `mongodb://${DB_USER}:${DB_PASS}@${DB_NAME}`;
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://user:qqqq0000@ds263640.mlab.com:63640/musicsite', {
+mongoose.connect(connectAddress, {
   useNewUrlParser: true
 });
-// require('./user');
 mongoose.connection.on('connected', () => {
-  console.log(
-    'Mongoose connection open mongodb://user:qqqq0000@ds263640.mlab.com:63640/musicsite'
-  );
+  console.log(`Mongoose connection open ${connectAddress}`);
 });
 
 mongoose.connection.on('error', err => {

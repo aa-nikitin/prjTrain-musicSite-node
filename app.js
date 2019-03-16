@@ -2,21 +2,22 @@ var createError = require('http-errors');
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
-// var cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
 var app = express();
-
-require('./models');
+require('dotenv').config();
+require('./config/config-db');
 
 app.use(logger('dev'));
 app.use(bodyParser.text());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(cookieParser());
+app.use(cookieParser());
 
-app.use('/api', require('./routes'));
+require('./config/config-passport');
+
+app.use(process.env.API_BASE, require('./routes'));
 
 app.use((req, res, next) => {
   if (req.method === 'GET') {
