@@ -7,7 +7,10 @@ const {
   login,
   logout,
   newUser,
-  authFromToken
+  authFromToken,
+  newCounters,
+  getCounters,
+  updateCounters
 } = require('../controllers');
 
 /* POST test. */
@@ -17,7 +20,12 @@ router.get('/getProducts/', getProducts);
 
 router.post('/login/', login);
 router.post('/authFromToken/', authFromToken);
-router.get('/newUser/', newUser);
 router.post('/logout/', logout);
+
+router.post('/newUser/', newUser);
+router.post('/newCounters/', newCounters);
+
+router.get('/getCounters/', getCounters);
+router.put('/updateCounters/', updateCounters);
 
 module.exports = router;
