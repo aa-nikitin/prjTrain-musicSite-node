@@ -2,16 +2,21 @@ const Counters = require('../models/counters');
 
 module.exports = (req, res, next) => {
   const jsonCounts = req.body;
-  // console.log(jsonCounts.arrCounts[1]);
+  const promisesCounts = [];
   const { arrCounts } = jsonCounts;
-  // const { arrCounts } = JSON.parse(jsonCounts);
+
   arrCounts.forEach(item => {
     const { name, count } = item;
-    Counters.updateOne(
-      { name: name },
-      { $set: { count: count } },
-      { new: true }
-    ).catch(next);
+    promisesCounts.push(
+      Counters.updateOne(
+        { name: name },
+        { $set: { count: count } },
+        { new: true }
+      )
+    );
   });
-  return res.status(200).json({ maessage: 'Счетчики успешно изменены' });
+
+  Promise.all(promisesCounts).then(() => {
+    return res.status(200).json({ maessage: 'Счетчики успешно изменены' });
+  });
 };
