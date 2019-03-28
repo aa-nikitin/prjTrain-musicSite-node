@@ -10,11 +10,12 @@ const {
   authFromToken,
   newCounters,
   getCounters,
-  updateCounters
+  updateCounters,
+  sendOrder
 } = require('../controllers');
 
 /* POST test. */
-router.post('/', test);
+// router.post('/', test);
 router.post('/newProduct/', newProduct);
 router.get('/getProducts/', getProducts);
 
@@ -27,5 +28,7 @@ router.post('/newCounters/', newCounters);
 
 router.get('/getCounters/', getCounters);
 router.put('/updateCounters/', updateCounters);
+
+router.post('/sendOrder/', sendOrder);
 
 module.exports = router;

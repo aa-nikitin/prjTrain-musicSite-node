@@ -8,5 +8,6 @@ module.exports = {
   authFromToken: require('./authFromToken.js'),
   newCounters: require('./newCounters.js'),
   getCounters: require('./getCounters.js'),
-  updateCounters: require('./updateCounters.js')
+  updateCounters: require('./updateCounters.js'),
+  sendOrder: require('./sendOrder.js')
 };
